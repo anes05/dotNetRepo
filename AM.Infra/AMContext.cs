@@ -42,14 +42,25 @@ Initial Catalog=AirportManagement4SE2;Integrated Security=true");
             //correspondante à cette propriété dans la base de données doit être PassFirstName
             // la propriété LastName est obligatoire + column name est PassLastName
             modelBuilder.Entity<Passenger>().OwnsOne(fn => fn.FullName,
-                
+
                full =>
             {
                 full.Property(p => p.FirstName).HasMaxLength(30).HasColumnName("PassFirstName");
                 full.Property(p => p.LastName).IsRequired().HasColumnName("PassLastName");
             } // => owned + contraintes de max length et obligation + changement de nom du column
+            //TP5Q1
+            );/*.HasDiscriminator<int>("IsTraveller").HasValue<Passenger>(2)
+                                                  .HasValue<Traveller>(1)
+                                                  .HasValue<Staff>(0);*/
+            /*.HasDiscriminator<char>("IsTraveller").HasValue<Passenger>('p')
+                                                  .HasValue<Traveller>('t')
+                                                  .HasValue<Staff>('s');*/
 
-            );
+            //Configuration de TPT (Table Per Type) 
+            //TP5Q2
+            modelBuilder.Entity<Staff>().ToTable("Staffs");
+            modelBuilder.Entity<Traveller>().ToTable("Travellers");
+            modelBuilder.
             base.OnModelCreating(modelBuilder);
         }
         //override configure + enter
