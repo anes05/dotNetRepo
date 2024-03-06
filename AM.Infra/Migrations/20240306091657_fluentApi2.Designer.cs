@@ -4,6 +4,7 @@ using AM.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AM.Infra.Migrations
 {
     [DbContext(typeof(AMContext))]
-    partial class AMContextModelSnapshot : ModelSnapshot
+    [Migration("20240306091657_fluentApi2")]
+    partial class fluentApi2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,13 +42,13 @@ namespace AM.Infra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EffectiveArrival")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("EstimatedDuration")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FlightDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PlaneFK")
                         .HasColumnType("int");
@@ -64,7 +67,7 @@ namespace AM.Infra.Migrations
                         .HasColumnType("nvarchar(7)");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -103,7 +106,7 @@ namespace AM.Infra.Migrations
                         .HasColumnName("PlaneCapacity");
 
                     b.Property<DateTime>("ManufactureDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PlaneType")
                         .HasColumnType("int");
@@ -133,7 +136,7 @@ namespace AM.Infra.Migrations
                     b.HasBaseType("AM.ApplicationCore.domain.Passenger");
 
                     b.Property<DateTime>("EmploymentDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Function")
                         .IsRequired()
