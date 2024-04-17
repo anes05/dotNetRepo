@@ -26,9 +26,9 @@ namespace AM.ApplicationCore.domain
         public String EmailAddress { get; set; }
         //public int Id { get; set; }// soit Id soit PassengerId, keyword Id to reference an Id of object
         //public int PassengerId { get; set; }
-        public List<ReservationTicket> reservationTickets { get; set; }
+        public virtual List<ReservationTicket> reservationTickets { get; set; }
 
-        public IList<Flight> Flights { get; set; }
+        public virtual IList<Flight> Flights { get; set; }
         public bool CheckProfile(String nom, String prenom)
         {
             return nom==this.FullName.FirstName && prenom==this.FullName.LastName;

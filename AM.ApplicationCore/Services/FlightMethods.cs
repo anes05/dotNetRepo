@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace AM.ApplicationCore.Services
 {
-    public class FlightMethods : IFlightMethods
+    public class FlightMethods :Service<Flight>, IFlightMethods
     {
         public List<Flight> Flights=new List<Flight> ();
+
+        public FlightMethods(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+        }
+
         //List<Traveller>Travellers=new List<Traveller> ();
 
         public IEnumerable<IGrouping<string, Flight>> DestinationGroupedFlights()

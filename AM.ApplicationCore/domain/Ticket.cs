@@ -11,7 +11,7 @@ namespace AM.ApplicationCore.domain
         public int Id { get; set; }
         public String Classe { get; set; }
         public String Destination { get; set; }
-        public List<ReservationTicket> reservationTickets { get; set; }
+        public virtual List<ReservationTicket> reservationTickets { get; set; }
 
     }
 }

@@ -18,6 +18,8 @@ namespace AM.Infra
         public DbSet<Plane> Planes { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Traveller> Travellers { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<ReservationTicket> ReservationTickets { get; set; }
 
 
         //override void onConfiguring
@@ -26,6 +28,8 @@ namespace AM.Infra
 
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb; 
 Initial Catalog=AirportManagement4SE2;Integrated Security=true");
+            //on ajoute cette ligne pour le lazy loading et les relation seron public virtual
+            optionsBuilder.UseLazyLoadingProxies();
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -38,6 +42,9 @@ Initial Catalog=AirportManagement4SE2;Integrated Security=true");
             modelBuilder.ApplyConfiguration(new FlightConfiguration());
             modelBuilder.ApplyConfiguration(new PlaneConfiguration());
             modelBuilder.ApplyConfiguration(new ReservationTicketConfiguration());
+            //ou bien on peut utliser le code suivant: 
+            //modelBuilder.Entity<ReservationTicket>().HasKey(p => new { p.PassengerFK, p.TicketFK, p.DateReservation });
+
             // configuration du type complexe( ou detenu ) FullName 
             //La propriété FirstName a une longueur maximale de 30 et le nom de la colonne 
             //correspondante à cette propriété dans la base de données doit être PassFirstName

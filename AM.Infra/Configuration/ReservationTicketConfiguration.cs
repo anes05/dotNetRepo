@@ -13,7 +13,7 @@ namespace AM.Infra.Configuration
     {
         public void Configure(EntityTypeBuilder<ReservationTicket> builder)
         {
-            builder.HasKey(p => new {p.DateReservation, p.Passenger, p.Ticket });
+            builder.HasKey(p => new {p.PassengerFK, p.TicketFK, p.DateReservation });
         }
 
     }
