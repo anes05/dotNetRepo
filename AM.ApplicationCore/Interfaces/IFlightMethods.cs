@@ -16,5 +16,6 @@ namespace AM.ApplicationCore.Interfaces
         IEnumerable<Flight> OrderedDurationFlights();
         IEnumerable<Traveller> SeniorTravellers(Flight flight);
         IEnumerable<IGrouping<string, Flight>> DestinationGroupedFlights();
+        IEnumerable<Staff> GetStaffOfFlightByFlightId(int flightId);
     }
 }

@@ -9,7 +9,10 @@ namespace AM.ApplicationCore.Interfaces
 {
     public interface IServicePlane : IService<Plane>
     {
-        IEnumerable<Passenger> GetPassengers(Plane p);
+        public IEnumerable<Traveller> GetPassengers(Plane p);
+        public IEnumerable<Flight> GetFlights(int n);
+        public bool ReserverVols(Flight flight,int n);
+        public void DeleteByFabricationDate();
 
     }
 }

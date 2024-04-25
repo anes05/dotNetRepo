@@ -8,16 +8,44 @@ using System.Threading.Tasks;
 
 namespace AM.ApplicationCore.Services
 {
-    internal class ServicePlane : Service<Plane>, IServicePlane
+    public class ServicePlane : Service<Plane>, IServicePlane
     {
         public ServicePlane(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
 
-        public IEnumerable<Passenger> GetPassengers(Plane plane)
+        public void DeleteByFabricationDate()
         {
-            return plane.Flights.SelectMany(p => p.Passengers);
+            Delete(f => f.ManufactureDate.Year - DateTime.Now.Year>10);
+        }
+
+        public IEnumerable<Flight> GetFlights(int n)
+        {
+            return GetAll().SelectMany(f=>f.Flights).OrderByDescending(t=>t.FlightDate).Take(n);
+        }
+
+        public IEnumerable<Traveller> GetPassengers(Plane plane)
+        {
+            //return plane.Flights.SelectMany(p => p.Passengers);
+            return plane.Flights.SelectMany(p => p.Passengers).OfType<Traveller>();
             
         }
+
+        public bool ReserverVols(Flight flight, int n)
+        {
+            return flight.Plane.Capacity>= flight.Passengers.Count()+n;
+        }
+
+        /* en cas ou on utilise ILIst instead of IEnumerable: 
+*         public IList<Traveller> GetPassengers(Plane plane)
+{
+   //return plane.Flights.SelectMany(p => p.Passengers);
+   return plane.Flights.SelectMany(p => p.Passengers).OfType<Traveller>().ToList();;
+
+}
+
+*/
+
+
     }
 }

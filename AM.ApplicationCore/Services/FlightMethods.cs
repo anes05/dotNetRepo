@@ -82,6 +82,12 @@ namespace AM.ApplicationCore.Services
                 .Select(a=>a.FlightDate).ToList();
         }
 
+        public IEnumerable<Staff> GetStaffOfFlightByFlightId(int flightId)
+        {
+            Flight flight= GetById(flightId);
+            return flight.Passengers.OfType<Staff>();
+        }
+
         public IEnumerable<Flight> OrderedDurationFlights()
         {
             /*var query=from flight in Flights
