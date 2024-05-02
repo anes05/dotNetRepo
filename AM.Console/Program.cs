@@ -2,6 +2,7 @@
 
 
 using AM.ApplicationCore.domain;
+using AM.ApplicationCore.Interfaces;
 using AM.ApplicationCore.Services;
 using System.Collections.Concurrent;
 using static System.Net.Mime.MediaTypeNames;
@@ -40,7 +41,7 @@ passenger.PassengerType();
 staff.PassengerType();
 traveller.PassengerType();
 
-FlightMethods fM = new FlightMethods();
+/*FlightMethods fM = new FlightMethods();
  fM.Flights = TestData.listFlights;
 Console.WriteLine("show flight details: ");
 fM.ShowFlightDetails(TestData.Airbusplane);
@@ -51,4 +52,4 @@ foreach (var item in fM.GetFlightDates("Madrid"))
 }
 
 Console.WriteLine("destinations grouped : ");
-fM.DestinationGroupedFlights();
+fM.DestinationGroupedFlights();*/

@@ -1,44 +1,51 @@
-﻿using AM.ApplicationCore.Interfaces;
+﻿using AM.ApplicationCore.domain;
+using AM.ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AM.Web.Controllers
+namespace WebAM.Controllers
 {
-    public class PlaneController : Controller
+    public class FlightController : Controller
     {
+        IFlightMethods FlightMethods;
         IServicePlane ServicePlane;
-        //injection par constructeur
-        public PlaneController(IServicePlane servicePlane)
+
+        public FlightController(IFlightMethods flightMethods, IServicePlane servicePlane)
         {
+            FlightMethods = flightMethods;
             ServicePlane = servicePlane;
         }
 
-        //affichage: 
-        // GET: PlaneController
+
+        // GET: FlightController
         public ActionResult Index()
         {
-            return View(ServicePlane.GetAll());
+            return View(FlightMethods.GetAll().ToList());
         }
 
-        // GET: PlaneController/Details/5
+        // GET: FlightController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PlaneController/Create
+        // GET: FlightController/Create
         public ActionResult Create()
         {
+            ViewBag.PlaneList = new SelectList(ServicePlane.GetAll(), "PlaneId", "Capacity");
             return View();
         }
 
-        // POST: PlaneController/Create
+        // POST: FlightController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Flight flight)
         {
             try
             {
+                FlightMethods.Add(flight);
+                FlightMethods.Commit();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -47,13 +54,13 @@ namespace AM.Web.Controllers
             }
         }
 
-        // GET: PlaneController/Edit/5
+        // GET: FlightController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PlaneController/Edit/5
+        // POST: FlightController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -68,13 +75,13 @@ namespace AM.Web.Controllers
             }
         }
 
-        // GET: PlaneController/Delete/5
+        // GET: FlightController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PlaneController/Delete/5
+        // POST: FlightController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

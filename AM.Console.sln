@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.ApplicationCore", "AM.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Infra", "AM.Infra\AM.Infra.csproj", "{85454060-2BBC-474B-BBA8-30098005D3BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Web", "AM.Web\AM.Web.csproj", "{C393D390-6A91-48A0-ADB6-F2B437A68A9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAM", "WebAM\WebAM.csproj", "{3B617B55-ADC6-41B2-8695-256A9342C71E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{85454060-2BBC-474B-BBA8-30098005D3BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85454060-2BBC-474B-BBA8-30098005D3BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85454060-2BBC-474B-BBA8-30098005D3BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C393D390-6A91-48A0-ADB6-F2B437A68A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C393D390-6A91-48A0-ADB6-F2B437A68A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C393D390-6A91-48A0-ADB6-F2B437A68A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C393D390-6A91-48A0-ADB6-F2B437A68A9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B617B55-ADC6-41B2-8695-256A9342C71E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B617B55-ADC6-41B2-8695-256A9342C71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B617B55-ADC6-41B2-8695-256A9342C71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B617B55-ADC6-41B2-8695-256A9342C71E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

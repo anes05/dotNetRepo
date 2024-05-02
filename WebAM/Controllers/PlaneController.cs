@@ -1,11 +1,14 @@
-﻿using AM.ApplicationCore.Interfaces;
+﻿using AM.ApplicationCore.domain;
+using AM.ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace AM.Web.Controllers
+namespace WebAM.Controllers
 {
     public class PlaneController : Controller
     {
+    
         IServicePlane ServicePlane;
         //injection par constructeur
         public PlaneController(IServicePlane servicePlane)
@@ -16,7 +19,8 @@ namespace AM.Web.Controllers
         //affichage: 
         // GET: PlaneController
         public ActionResult Index()
-        {
+        { 
+
             return View(ServicePlane.GetAll());
         }
 
@@ -35,10 +39,12 @@ namespace AM.Web.Controllers
         // POST: PlaneController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Plane plane)
         {
             try
             {
+                ServicePlane.Add(plane);
+                ServicePlane.Commit();
                 return RedirectToAction(nameof(Index));
             }
             catch

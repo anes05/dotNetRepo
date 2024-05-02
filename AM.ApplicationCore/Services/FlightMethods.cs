@@ -13,6 +13,8 @@ namespace AM.ApplicationCore.Services
     {
         public List<Flight> Flights=new List<Flight> ();
 
+
+
         public FlightMethods(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }

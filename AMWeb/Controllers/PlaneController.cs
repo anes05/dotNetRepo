@@ -1,23 +1,14 @@
-﻿using AM.ApplicationCore.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AM.Web.Controllers
+namespace AMWeb.Controllers
 {
     public class PlaneController : Controller
     {
-        IServicePlane ServicePlane;
-        //injection par constructeur
-        public PlaneController(IServicePlane servicePlane)
-        {
-            ServicePlane = servicePlane;
-        }
-
-        //affichage: 
         // GET: PlaneController
         public ActionResult Index()
         {
-            return View(ServicePlane.GetAll());
+            return View();
         }
 
         // GET: PlaneController/Details/5
