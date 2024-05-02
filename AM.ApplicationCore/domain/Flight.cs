@@ -16,8 +16,8 @@ namespace AM.ApplicationCore.domain
         public String Departure { get; set; }
         public String Destination { get; set; }
         public int PlaneFK { get; set; }
+        public string Pilot { get; set; }
         [ForeignKey("PlaneFK")]
-
         public virtual Plane Plane { get; set; }
         public virtual IList<Passenger> Passengers { get; set; }
 

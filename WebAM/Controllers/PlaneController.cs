@@ -27,7 +27,7 @@ namespace WebAM.Controllers
         // GET: PlaneController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(ServicePlane.GetById(id));
         }
 
         // GET: PlaneController/Create

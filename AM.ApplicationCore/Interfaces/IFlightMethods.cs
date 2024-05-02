@@ -9,6 +9,7 @@ namespace AM.ApplicationCore.Interfaces
 {
     public interface IFlightMethods:IService<Flight>
     {
+        public IEnumerable<Flight> SortFlights();
         List<DateTime> GetFlightDates(String Destination);
         void ShowFlightDetails(Plane planne);
         int ProgrammedFlightNumber(DateTime startDate);

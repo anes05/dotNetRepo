@@ -153,5 +153,10 @@ namespace AM.ApplicationCore.Services
             }
             
         }
+
+        public IEnumerable<Flight> SortFlights()
+        {
+            return GetAll().OrderByDescending(f => f.FlightDate);
+        }
     }
 }

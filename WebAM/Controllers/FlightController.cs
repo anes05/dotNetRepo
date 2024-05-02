@@ -19,9 +19,14 @@ namespace WebAM.Controllers
 
 
         // GET: FlightController
-        public ActionResult Index()
+        public ActionResult Index(DateTime? dateDepart)
         {
-            return View(FlightMethods.GetAll().ToList());
+            if (dateDepart == null)
+            {
+                return View(FlightMethods.GetAll().ToList());
+            }
+            else
+                return View(FlightMethods.GetMany(f=> f.FlightDate.Date.Equals(dateDepart)).ToList());
         }
 
         // GET: FlightController/Details/5
@@ -40,10 +45,18 @@ namespace WebAM.Controllers
         // POST: FlightController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Flight flight)
+        public ActionResult Create(Flight flight, IFormFile PilotImage)
         {
             try
             {
+                if(PilotImage!=null)
+                {
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads",
+PilotImage.FileName);
+                    Stream stream = new FileStream(path, FileMode.Create);
+                    PilotImage.CopyTo(stream);
+                    flight.Pilot = PilotImage.FileName;
+                }
                 FlightMethods.Add(flight);
                 FlightMethods.Commit();
                 return RedirectToAction(nameof(Index));
@@ -57,16 +70,19 @@ namespace WebAM.Controllers
         // GET: FlightController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(FlightMethods.GetById(id));
         }
 
         // POST: FlightController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Flight flight, int id)
         {
             try
             {
+                //Flight flight = FlightMethods.GetById(id);
+                FlightMethods.Update(flight);
+                FlightMethods.Commit();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,7 +94,7 @@ namespace WebAM.Controllers
         // GET: FlightController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(FlightMethods.GetById(id));
         }
 
         // POST: FlightController/Delete/5
@@ -86,8 +102,14 @@ namespace WebAM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            Flight flight = FlightMethods.GetById(id);
             try
             {
+                FlightMethods.Delete(flight);
+
+                FlightMethods.Commit();
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -95,5 +117,11 @@ namespace WebAM.Controllers
                 return View();
             }
         }
+
+        public ActionResult Sort()
+        {
+            return View("Index", FlightMethods.SortFlights());
+        }
+
     }
 }

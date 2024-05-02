@@ -1,28 +1,15 @@
 ﻿@model IEnumerable<AM.ApplicationCore.domain.Flight>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sort";
 }
 
-<h1>Index</h1>
+<h1>Sort</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-action="index">
-    <fieldset>
-        <legend> Recherche</legend>
-        Saisir une date de départ :
-        <input type="date" name="dateDepart" />
-        <input type="submit" value="Search" />
-    </fieldset>
-</form>
 
-<form asp-action="Sort">
-    <fieldset>
-        <input type="submit" value="Sort" />
-    </fieldset>
-</form>
 <table class="table">
     <thead>
         <tr>
@@ -46,9 +33,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PlaneFK)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model=>model.Pilot)
             </th>
             <th></th>
         </tr>
@@ -78,13 +62,9 @@
                 @Html.DisplayFor(modelItem => item.PlaneFK)
             </td>
             <td>
-                <img src="~/uploads/@item.Pilot" width="50" height="50" >
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.FlightId }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.FlightId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.FlightId })
-                @Html.ActionLink("Plane Details","Details","Plane", new {id= item.PlaneFK} )
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
