@@ -1,4 +1,4 @@
-﻿using AM.ApplicationCore.domain;
+﻿    using AM.ApplicationCore.domain;
 using AM.Infra.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
